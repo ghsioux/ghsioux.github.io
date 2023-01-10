@@ -13,25 +13,24 @@ html {
 }
 
 table {
+  margin: 0 auto;
   border-collapse: collapse;
+  border-style: hidden;
+  table-layout: auto;
+  width: "100%"
+  /*Remove all the outside
+  borders of the existing table*/
 }
-table td, table th {
-  border: 1px solid;
-  padding: 1em;
+table td {
+  padding: 0.3em;
+  border: 0.5px solid;
+  overflow: hidden; 
+  text-overflow: ellipsis; 
+  word-wrap: break-word;
 }
-table tr:first-child th {
-  border-top: 0;
-}
-table tr:last-child td {
-  border-bottom: 0;
-}
-table tr td:first-child,
-table tr th:first-child {
-  border-left: 0;
-}
-table tr td:last-child,
-table tr th:last-child {
-  border-right: 0;
+table th {
+  padding: 0.3em;
+  border: 0.5px solid;
 }
 
 #theme-toggle {
