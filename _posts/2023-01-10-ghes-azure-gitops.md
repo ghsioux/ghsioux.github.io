@@ -2,12 +2,12 @@
 layout: post
 title: Deploying GitHub Enterprise Server on Azure the GitOps way
 description: A story about GHES, Terraform, GitHub Actions and the GitOps' holy spirit
-//summary: Increase the security of your Netlify website by adding security headers.
 comments: false
 tags: ghes terraform actions gitops azure
 minute: 10
 toc: true
 ---
+
 
 ## 0 - Introduction
 
@@ -18,7 +18,6 @@ In this post I'll share a simple way to do so, through the example of a GitHub E
 The code can be found [in this repository](https://github.com/ghsioux-octodemo/deploy-ghes-azure-terraform/) which is based on [Azure-Samples/terraform-github-actions](https://github.com/Azure-Samples/terraform-github-actions/), a sample repository that shows how to use GitHub Actions workflows to manage Azure infrastructure with Terraform.
 v
 ## 1 - The infrastructure
-
 The Terraform code used to describe the target infrastructure - that is, the GHES related resources - is split into several files:
 
 ```zsh
