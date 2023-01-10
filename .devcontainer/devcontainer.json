@@ -1,0 +1,25 @@
+{
+  "name": "Jekyll website",
+  "image": "mcr.microsoft.com/vscode/devcontainers/ruby:2.7-buster",
+  "features": {
+    "git-lfs": "latest"
+  },
+  "forwardPorts": [4000],
+  "portsAttributes": {
+    "4000": {
+      "label": "Website"
+    }
+  },
+  "customizations":{
+      "vscode": {
+          "settings": {
+               "terminal.integrated.defaultProfile.linux": "bash"
+          },
+          "extensions": [
+              "github.copilot"
+          ]
+      }
+  },
+  "postCreateCommand": "bundle install",
+  "postAttachCommand": "bundler exec jekyll serve --watch --port=4000 --host=0.0.0.0 --livereload --verbose"
+}

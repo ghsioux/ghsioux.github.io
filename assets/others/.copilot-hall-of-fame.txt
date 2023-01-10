@@ -1,0 +1,2 @@
+## Bonus: The Copilot hall of fame
+Having our infrastructure as code (IaC) is a good thing, but it's not enough. We need to ensure that the deployed infrastructure is in sync with the code. This is where the GitOps' holy spirit comes in.
