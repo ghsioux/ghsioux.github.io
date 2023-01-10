@@ -2,7 +2,7 @@
 layout: page
 title: about
 description: about
-//summary: Increase the security of your Netlify website by adding security headers.
+summary: About me
 comments: false
 ---
 
