@@ -73,7 +73,6 @@ on:
     - '**.tfvars' 
 ```
 
-
 ## 3 - Putting it all together (a.k.a. the GitOps part)
 
 Combining both Terraform and GitHub Actions allows us to embrace the GitOps paradigm. Here is a typical process leveraging this approach:
