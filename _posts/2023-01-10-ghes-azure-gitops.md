@@ -16,7 +16,7 @@ As a zen apprentice I like to free my mind as much as I can, specially regarding
 In this post I'll share a simple way to do so, through the example of a GitHub Enterprise Server (GHES) instance that I use for testing purposes. This GHES instance is described as Terraform code and deployed in Azure using GitHub Actions workflows. 
 
 The code can be found [in this repository](https://github.com/ghsioux-octodemo/deploy-ghes-azure-terraform/) which is based on [Azure-Samples/terraform-github-actions](https://github.com/Azure-Samples/terraform-github-actions/), a sample repository that shows how to use GitHub Actions workflows to manage Azure infrastructure with Terraform.
-v
+
 ## 1 - The infrastructure
 The Terraform code used to describe the target infrastructure - that is, the GHES related resources - is split into several files:
 
