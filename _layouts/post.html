@@ -17,6 +17,9 @@ layout: default
   <span class="meta">
     {% for tag in page.tags %}
     <a href="{{ site.url }}{{ site.baseurl }}/tag/{{tag}}">{{tag}}</a>{% unless forloop.last %}, {% endunless %}{% endfor %}</span>
+  
+  <b>Table of content:</b>
+  {% toc %}  
   {{ content }}
 </section>
 

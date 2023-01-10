@@ -6,16 +6,18 @@ description: A story about GHES, Terraform, GitHub Actions and the GitOps' holy 
 comments: false
 tags: ghes terraform actions gitops azure
 minute: 10
+toc: true
 ---
 
+## 0 - Introduction
 
 As a zen apprentice I like to free my mind as much as I can, specially regarding if/where/how my ressources are deployed in the cloud ☁️.
 
 In this post I'll share a simple way to do so, through the example of a GitHub Enterprise Server (GHES) instance that I use for testing purposes. This GHES instance is described as Terraform code and deployed in Azure using GitHub Actions workflows. 
 
 The code can be found [in this repository](https://github.com/ghsioux-octodemo/deploy-ghes-azure-terraform/) which is based on [Azure-Samples/terraform-github-actions](https://github.com/Azure-Samples/terraform-github-actions/), a sample repository that shows how to use GitHub Actions workflows to manage Azure infrastructure with Terraform.
-
-## The infrastructure
+v
+## 1 - The infrastructure
 
 The Terraform code used to describe the target infrastructure - that is, the GHES related resources - is split into several files:
 
@@ -37,7 +39,7 @@ Overall this is a typical file structure for a simple Terraform project:
 
 The special file `.terraform.lock.hcl` is a lock file ensuring that the same versions of the plugins are used by all collaborators of the repo.
 
-## The Action workflows
+## 2 - The Action workflows
 
 The `.github/workflows` directory contains the GitHub Actions workflows that will work with the Terraform code.
 
@@ -71,7 +73,7 @@ on:
     - '**.tfvars' 
 ```
 
-## Putting it all together (a.k.a. the GitOps part)
+## 3 - Putting it all together (a.k.a. the GitOps part)
 Combining both Terraform and GitHub Actions allows us to embrace the GitOps paradigm. Here is a typical process leveraging this approach:
 1. Clone the repo and create a new branch to work on a new feature, or to update a Terraform variable that'll in turn update the GHES deployment;
 2. Once the Terraform code has been updated, push the changes to the remote repo and open [a pull request](https://github.com/ghsioux-octodemo/deploy-ghes-azure-terraform/pull/2) towards the `main` branch;
@@ -90,7 +92,7 @@ At this point, my GitHub Enterprise Server instance is deployed in Azure and rea
 Finally the `tf-drift.yml` workflow is triggered every day to detect drifts between the desired and the currently deployed infrastructure. If drifts are detected, the workflow will open a new issue, and I'll receive a [notification from GitHub](https://docs.github.com/en/account-and-profile/managing-subscriptions-and-notifications-on-github/setting-up-notifications/configuring-notifications#about-custom-notifications):
 ![the drift issue](/assets/images/2023-01-03-ghes-azure-gitops/drift.png "The drift issue")
 
-## The end
+## 4 - The end
 That's it for today folks, I hope you enjoyed this post and that it will help you to get started with Terraform and GitHub Actions.
 
 As usual, this is more like a PoC and many improvements can be done. Zen masters often say that "the journey is never ending".

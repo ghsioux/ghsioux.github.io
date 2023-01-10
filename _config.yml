@@ -60,6 +60,12 @@ plugins:
   - jekyll-paginate
   - jekyll-sitemap
   - jekyll-relative-links
+  - jekyll-toc
+
+toc:
+  min_level: 1
+  max_level: 3
+
 
 collections:
   pages:

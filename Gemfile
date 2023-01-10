@@ -10,3 +10,6 @@ gem 'wdm', '>= 0.1.0'
 
 # update ruby version
 gem 'webrick'
+
+# table of content
+gem 'jekyll-toc'
