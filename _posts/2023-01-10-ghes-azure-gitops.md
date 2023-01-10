@@ -94,7 +94,6 @@ At this point, my GitHub Enterprise Server instance is deployed in Azure and rea
 ![GHES first boot](/assets/images/2023-01-03-ghes-azure-gitops/ghes_first_boot.png "GHES first boot")
 
 Finally the `tf-drift.yml` workflow is triggered every day to detect drifts between the desired and the currently deployed infrastructure. If drifts are detected, the workflow will open a new issue, and I'll receive a [notification from GitHub](https://docs.github.com/en/account-and-profile/managing-subscriptions-and-notifications-on-github/setting-up-notifications/configuring-notifications#about-custom-notifications):
-
 ![the drift issue](/assets/images/2023-01-03-ghes-azure-gitops/drift.png "The drift issue")
 
 ## 4 - The end
