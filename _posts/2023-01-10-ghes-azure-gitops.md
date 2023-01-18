@@ -93,7 +93,10 @@ Combining both Terraform and GitHub Actions allows us to embrace the GitOps para
 At this point, my GitHub Enterprise Server instance is deployed in Azure and ready to be used (or well, to be set up if it's the first boot :)
 ![GHES first boot](/assets/images/2023-01-03-ghes-azure-gitops/ghes_first_boot.png "GHES first boot")
 
-Finally the `tf-drift.yml` workflow is triggered every day to detect drifts between the desired and the currently deployed infrastructure. If drifts are detected, the workflow will open a new issue, and I'll receive a [notification from GitHub](https://docs.github.com/en/account-and-profile/managing-subscriptions-and-notifications-on-github/setting-up-notifications/configuring-notifications#about-custom-notifications):
+Now that the deployment is done, we want to ensure the infrastructure is always in line with the Terraform code.
+Indeed, unwanted changes might occur in the infrastructure along time, like the VM being deleted manually or the DNS name being updated. This is where the `tf-drift.yml` workflow comes into play.
+
+This workflow is triggered every day to detect drifts between the desired (i.e. the Terraform code) and the currently deployed infrastructure. If drifts are detected, the workflow will open a new issue, and I'll receive a [notification from GitHub](https://docs.github.com/en/account-and-profile/managing-subscriptions-and-notifications-on-github/setting-up-notifications/configuring-notifications#about-custom-notifications):
 ![the drift issue](/assets/images/2023-01-03-ghes-azure-gitops/drift.png "The drift issue")
 
 ## 4 - The end
