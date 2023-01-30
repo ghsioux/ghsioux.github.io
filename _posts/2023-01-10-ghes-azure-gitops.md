@@ -81,23 +81,23 @@ Combining both Terraform and GitHub Actions allows us to embrace the GitOps para
 2. Once the Terraform code has been updated, push the changes to the remote repo and open [a pull request](https://github.com/ghsioux-octodemo/deploy-ghes-azure-terraform/pull/2) towards the `main` branch;
 
 3. The `tf-unit-tests.yml` workflow is triggered to test the Terraform code;
-![the unit tests workflow](/assets/images/2023-01-03-ghes-azure-gitops/unit-tests.png "The unit tests workflow")
+![the unit tests workflow](/assets/images/2023-01-10-ghes-azure-gitops/unit-tests.png "The unit tests workflow")
 
 4. In parallel, the `tf-plan-apply.yml` workflow is triggered to build the Terraform plan and to share it as a comment in the PR conversation, for review purposes;
-![the Terraform plan](/assets/images/2023-01-03-ghes-azure-gitops/terraform_plan.png "The Terraform plan")
+![the Terraform plan](/assets/images/2023-01-10-ghes-azure-gitops/terraform_plan.png "The Terraform plan")
 5. After all the PR [required checks](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/defining-the-mergeability-of-pull-requests/about-protected-branches#require-status-checks-before-merging) and [reviews](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/reviewing-changes-in-pull-requests/approving-a-pull-request-with-required-reviews) have passed, the PR can be merged into the `main` branch;
 
 6. Once the PR merged, the `tf-plan-apply.yml` workflow is triggered again, and this time it applies the Terraform plan in Azure, effectively deploying the GHES resources;
-![the Terraform apply](/assets/images/2023-01-03-ghes-azure-gitops/tf-plan-apply-push.png "The Terraform apply")
+![the Terraform apply](/assets/images/2023-01-10-ghes-azure-gitops/tf-plan-apply-push.png "The Terraform apply")
 
 At this point, my GitHub Enterprise Server instance is deployed in Azure and ready to be used (or well, to be set up if it's the first boot :)
-![GHES first boot](/assets/images/2023-01-03-ghes-azure-gitops/ghes_first_boot.png "GHES first boot")
+![GHES first boot](/assets/images/2023-01-10-ghes-azure-gitops/ghes_first_boot.png "GHES first boot")
 
 Now that the deployment is done, we want to ensure the infrastructure is always in line with the Terraform code.
 Indeed, unwanted changes might occur in the infrastructure along time, like the VM being deleted manually or the DNS name being updated. This is where the `tf-drift.yml` workflow comes into play.
 
 This workflow is triggered every day to detect drifts between the desired (i.e. the Terraform code) and the currently deployed infrastructure. If drifts are detected, the workflow will open a new issue, and I'll receive a [notification from GitHub](https://docs.github.com/en/account-and-profile/managing-subscriptions-and-notifications-on-github/setting-up-notifications/configuring-notifications#about-custom-notifications):
-![the drift issue](/assets/images/2023-01-03-ghes-azure-gitops/drift.png "The drift issue")
+![the drift issue](/assets/images/2023-01-10-ghes-azure-gitops/drift.png "The drift issue")
 
 ## 4 - The end
 That's it for today folks, I hope you enjoyed this post and that it will help you to get started with Terraform and GitHub Actions.
