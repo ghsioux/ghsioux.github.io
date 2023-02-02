@@ -33,7 +33,7 @@ In my repo, the `main` branch is the one from where the Terraform code is applie
 * some jobs of the PR-triggered Actions workflows must pass successfully (they are what we call [required status checks](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/defining-the-mergeability-of-pull-requests/about-protected-branches#require-status-checks-before-merging));
 * the commits in the PR must be [signed and verified](https://docs.github.com/en/authentication/managing-commit-signature-verification/about-commit-signature-verification).
 
-![branch protection rules](/assets/images/2023-01-19-securing-branches-and-deployments/protection_rules.png "Branch protection rules")
+![branch protection rules](/assets/images/2023-02-02-securing-branches-and-deployments/protection_rules.png "Branch protection rules")
 
 Each of these rules must be respected before the PR can be merged. All together, they form a nice barrier against the two first shurikens we saw above.
 
@@ -43,7 +43,7 @@ The third rule ensures that the ["Unit test"](https://github.com/ghsioux-octodem
 
 We can see these required status checks in different locations, including the PR "Conversation" and "Checks" tab:
 
-![required status checks](/assets/images/2023-01-19-securing-branches-and-deployments/checks.png "Required status checks")
+![required status checks](/assets/images/2023-02-02-securing-branches-and-deployments/checks.png "Required status checks")
 
 Finally, the last rule adds some extra-security by requiring valid cryptographic signatures on every commits. Such mechanism makes it more difficult to impersonate someone else and push code on its behalf. 
 By the way, have you heard about [GitHub vigilant mode](https://docs.github.com/en/authentication/managing-commit-signature-verification/displaying-verification-statuses-for-all-of-your-commits)?  
@@ -56,20 +56,20 @@ Environments are logical deployment targets for a repository. They are used in A
 
 Here is the `production` environment I've created for my repo:
 
-![environment_secrets_variables](/assets/images/2023-01-19-securing-branches-and-deployments/environment.png "Environment secrets and variables")
+![environment_secrets_variables](/assets/images/2023-02-02-securing-branches-and-deployments/environment.png "Environment secrets and variables")
 
 
 This environment is scoped to the `main` branch and will target a given Azure tenant through its `AZURE_CLIENT_ID` secret - used by the "Terraform Apply" job to [OIDC-authenticate in Azure](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-azure). In a more realistic context, we could imagine a second environment named `staging` with its own `AZURE_CLIENT_ID` secret to target another Azure tenant. I've also added a protection rule specifying that the user @ghsioux (🥷) must manually approve the deployment beforehand.
 
 Like this, when the PR is merged and the `main` branch updated, the "Terraform Apply" job is triggered and I have to approve the deployment first:
 
-![deploymend review required](/assets/images/2023-01-19-securing-branches-and-deployments/review_deployment_1.png "deploymend review required")
+![deploymend review required](/assets/images/2023-02-02-securing-branches-and-deployments/review_deployment_1.png "deploymend review required")
 
-![deploymend review done](/assets/images/2023-01-19-securing-branches-and-deployments/review_deployment_2.png "deploymend review done")
+![deploymend review done](/assets/images/2023-02-02-securing-branches-and-deployments/review_deployment_2.png "deploymend review done")
 
 Once approved, waiting a few minutes for the job to complete, we can see the deployment is active and the GHES URL available: 
 
-![successful_deployment](/assets/images/2023-01-19-securing-branches-and-deployments/deployment.png "Successful deployment")
+![successful_deployment](/assets/images/2023-02-02-securing-branches-and-deployments/deployment.png "Successful deployment")
 
 You get it, with environments and their associated protection rules, the last shuriken isn't a threat anymore.
 
