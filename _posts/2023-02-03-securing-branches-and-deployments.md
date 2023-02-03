@@ -75,8 +75,10 @@ You get it, with environments and their associated protection rules, the last sh
 
 ## 4 - Shurikens to come
 
-Today we have seen how to protect our code from some shurikens, but there are still more to come. For instance, what if sensitive data (e.g. an Azure access key) was pushed to the repo? Or new compliance rules should be enforced on all the repositories of a big organization?
+Today we have seen how to protect our code from some shurikens, but there are still more to come. For instance, what if sensitive data (e.g. an Azure access key) was pushed to the repo? Or new compliance rules should be enforced on all the repositories of a big organization? We could investigate the use of [secret scanning](https://docs.github.com/en/code-security/secret-scanning/about-secret-scanning) and [required workflows](https://docs.github.com/en/actions/using-workflows/required-workflows) for this. 
 
-We could investigate the use of [secret scanning](https://docs.github.com/en/code-security/secret-scanning/about-secret-scanning) and [required workflows](https://docs.github.com/en/actions/using-workflows/required-workflows) for this. But that's another story for another time.
+Another improvement could be to switch from the [__deploy -> merge__ model to the __branch deploy__ model](https://github.blog/2023-02-02-enabling-branch-deployments-through-issueops-with-github-actions/#understanding-the-branch-deploy-model) for an even safer `main` branch.
+
+But that's another story for another time.
 
 Gasshō! 🙏
