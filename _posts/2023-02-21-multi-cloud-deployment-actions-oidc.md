@@ -1,9 +1,9 @@
 ---
 layout: post
-title: Versioned and passwordless multi-cloud deployment
-description: A story about versioned & passwordless multi-cloud deployment 
+title: Multi-clouds deployment with OIDC and rollback
+description: A story about versioned & passwordless multi-clouds deployment 
 comments: false
-tags: actions oidc container azure aws gcp release reusable-workflows
+tags: actions oidc container-app azure aws gcp release reusable-workflows rollback
 minute: 30
 ---
 
@@ -213,22 +213,19 @@ Congrats, you made it so far, and now comes the time to enjoy and trigger 🔫
 Let's say that the developers have been working hard on the application to add new features, and they are ready to deploy the new version to production.
 
 A member with the `admin` permission on the repository will create a new release with a tag matching the `v*` regexp:
+![release_creation](/assets/images/2023-04-05-multicloud-deployment/release.png "Release creation")
 
-![release](./images/release.png)
-
-This will trigger the main workflow, and after the checks have passed, the image is built and pushed to the GitHub container registry. Then the three reusable workflows are called, and since they are working on protected environments, a manual approval is required, e.g. by the SRE team:
-
-![approval](./images/approval.png)
+This will trigger the main workflow, and after the checks have passed, the image is built and pushed to the GitHub container registry. Then the three reusable workflows are called, and since they are working on protected environments, a manual approval is required (e.g. by the SRE team):
+![deployments_approval](/assets/images/2023-04-05-multicloud-deployment/deployment_approval.png "Deployments approval")
 
 Once the approval is granted, the workflows will continue and the new version of the application will be deployed to our three cloud providers:
-
-![deployments](./images/deployments.png)
+![deployment_succeeded](/assets/images/2023-04-05-multicloud-deployment/deployment_succeeded.png "Deployment succeeded")
 
 Is that all? Could be, but you know, sometimes accidents happen. Let's imagine that's the case, and that the new version of the application is not working as expected. Mayday, mayday, we need to rollback! Nothing more simple, the administrator will just trigger the workflow again, but this time manually, and on the tag matching the previous release:
+![rollback](/assets/images/2023-04-05-multicloud-deployment/rollback.png "Rollback triggering")
 
-![rollback](./images/rollback.png)
 
-Phew, we're back to business! 🎉
+Phew, we're going back to business! 🎉
 
 ## 6 - Next steps
 
