@@ -182,7 +182,7 @@ That's why I've added a few checks in the first job of the workflow to ensure th
     name: Ensure this workflow has been triggered by and admin on a protected release tag (v*)
     runs-on: ubuntu-latest
     env:
-      TRIGGERING_ACTOR: ${{ github.triggering_actor }}
+      TRIGGERING_ACTOR: {% raw %}${{ github.triggering_actor }}{% endraw %}
     steps:
       - name: Fail if the workflow has been triggered manually with a non-release tag (i.e. not using the 'v*' regex)
         run: |
