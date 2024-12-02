@@ -63,9 +63,9 @@ This environment is scoped to the `main` branch and will target a given Azure te
 
 Like this, when the PR is merged and the `main` branch updated, the "Terraform Apply" job is triggered and I have to approve the deployment first:
 
-![deploymend review required](/assets/images/2023-02-03-securing-branches-and-deployments/review_deployment_1.png "deploymend review required")
+![deployment review required](/assets/images/2023-02-03-securing-branches-and-deployments/review_deployment_1.png "deployment review required")
 
-![deploymend review done](/assets/images/2023-02-03-securing-branches-and-deployments/review_deployment_2.png "deploymend review done")
+![deployment review done](/assets/images/2023-02-03-securing-branches-and-deployments/review_deployment_2.png "deployment review done")
 
 Once approved, waiting a few minutes for the job to complete, we can see the deployment is active and the GHES URL available: 
 
