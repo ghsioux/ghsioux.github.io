@@ -32,7 +32,7 @@ As a reminder, the shortcode is chosen when you create an enterprise with manage
 
 Azure Entra ID provides a straightforward solution using the [`Left()` function](https://learn.microsoft.com/en-us/entra/identity/app-provisioning/functions-for-customizing-application-data#left), which trims strings to a specific length:
 
-```plaintext
+```java
 Left(text, number_of_characters)
 ```
 
@@ -43,7 +43,7 @@ With:
 
 For example, if your shortcode plus the `_` is 5 characters (e.g. `_octo`), you can allow up to 34 characters for the UPN:
 
-```plaintext
+```java
 Left([userPrincipalName], 34)
 ```
 
