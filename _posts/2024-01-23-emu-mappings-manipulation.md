@@ -55,6 +55,8 @@ This ensures the entire username, including the shortcode, stays within GitHubâ€
 
 While truncating usernames is a common use-case, there are other scenarios where provisioning mappings may need customization. For example, you might want to:
 
+- **Use a custom field for the usernames**: Companies might have specific fields in their IdP - such as `employeeID` - that better suit their GitHubâ€™s username strategy. By mapping these fields, you can ensure usernames are compliant without manual intervention.
+
 - **Normalize email addresses**: Normalize the emails attribute to ensure a consistent domain suffix for all users. For instance, if your organization uses multiple domains, you might standardize email addresses so that all users appear with the same domain in GitHub (e.g., `john.doe@sub.example.com` becomes `john.doe@example.com`).
 
 - **Customize display names**: Use the `name.givenName` and `name.familyName` attributes to create a more standardized or localized display name format for users in GitHub. For example, if your organization prefers full names in a "LastName, FirstName" format, you could map and combine these attributes accordingly.
