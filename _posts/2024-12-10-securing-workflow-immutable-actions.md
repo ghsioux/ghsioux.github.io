@@ -46,7 +46,7 @@ Immutable Actions are a new feature in GitHub that ensures the actions used in C
     Immutable Actions are published through a secure process using an Actions token as part of a workflow run. This ensures that the action is firmly tied to its source repository. Furthermore, **artifact attestations** are generated to verify the publishing process, ensuring that actions are legitimate.
 
 - **Package and Tag Immutability**  
-    Once an action is published, it is served as a package from [GHRC](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry) and its version becomes immutable. This means that tags and branches can't be overwritten or changed to point to different artifacts. This feature guarantees that the action version remains consistent over time, protecting against tampering and unexpected changes.
+    Once an action is published, it is served as a package from [GHCR](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry) and its version becomes immutable. This means that tags and branches can't be overwritten or changed to point to different artifacts. This feature guarantees that the action version remains consistent over time, protecting against tampering and unexpected changes.
 
 - **Locking Down Actions Resolution**  
     With Immutable Actions, GitHub enforces strict [semantic versioning](https://semver.org/) with automatic wildcard resolution (✦✦ see next section). This ensures that workflows use actions that have a stable and verifiable version. For instance, the action's reference cannot change to a different commit unless the version number reflects it. This prevents mutable references (like branches and tags) from altering the behavior of workflows unexpectedly.
@@ -74,7 +74,7 @@ Immutable Actions introduce wildcard versioning to balance stability and flexibi
 
 The following diagram demonstrates how GitHub resolves wildcard references to the latest matching package version:
 
-![Wildcard resolution example](/assets/images/2024-11-29-securing-workflow-immutable-actions/wildcard-resolution.png "Wildcard resolution example")
+![Wildcard resolution example](/assets/images/2024-12-10-securing-workflow-immutable-actions/wildcard-resolution.png "Wildcard resolution example")
 
 While wildcard versioning and resolution provides flexibility, it challenges the core principle of immutability. Immutable Actions ensure an action’s content and behavior remain consistent, making dynamic changes from wildcard references potentially problematic. For example, if a workflow references `v1`, it might unintentionally introduce behavior changes with a new minor or patch release, like moving from `1.2` to `1.3`. For maximum stability and immutability, it's recommended to pin actions to a specific version, such as `1.3.2`.
 
@@ -114,7 +114,7 @@ All the magic happens in [the `publish-immutable-action` action](https://github.
 
 I created and pushed [the tag `v1.0.0`](https://github.com/ghsioux/immutable-action-demo/releases/tag/v1.0.0), created [a release](https://github.com/ghsioux/immutable-action-demo/releases/tag/v1.0.0) from this tag and the immutable action [has been published accordingly](https://github.com/ghsioux/immutable-action-demo/actions/runs/12175417462/job/33959091043) (you can see the attestation has been published too in the job's log). [The corresponding package](https://github.com/ghsioux/immutable-action-demo/pkgs/container/immutable-action-demo/317337038?tag=1.0.0) in GHCR has the label `Immutable`.
 
-![Immutable action package version 1.0.0](/assets/images/2024-11-29-securing-workflow-immutable-actions/immutable-action-package.png "Immutable action package version 1.0.0")
+![Immutable action package version 1.0.0](/assets/images/2024-12-10-securing-workflow-immutable-actions/immutable-action-package.png "Immutable action package version 1.0.0")
 
 I can verify the attestation of the immutable action using [the GitHub CLI](https://cli.github.com/):
 ```bash
@@ -177,11 +177,11 @@ Proving the action has been correctly resolved from tag to package version, supp
 
 That's nice. Now let's test some corner cases. What if I create [a tag `v1.0.2`](https://github.com/ghsioux/immutable-action-demo/releases/tag/v1.0.2) without publishing a corresponding immutable action and try to use it [in a workflow](https://github.com/ghsioux/immutable-action-demo/blob/231b99f91e2507a977f663da70404836f7064be3/.github/workflows/test-immutable-action-tag-without-release.yml)? As expected, that simply [does not work](https://github.com/ghsioux/immutable-action-demo/actions/runs/12176024772/job/33960889984) because there is no immutable action matching the version `1.0.2`:
 
-![Action resolution error](/assets/images/2024-11-29-securing-workflow-immutable-actions/resolution-error.png "Action resolution error")
+![Action resolution error](/assets/images/2024-12-10-securing-workflow-immutable-actions/resolution-error.png "Action resolution error")
 
 Now let's tackle immutability. I've initially created a new tag `v1.0.3` from [commit 231b99f](https://github.com/ghsioux/immutable-action-demo/commit/231b99f91e2507a977f663da70404836f7064be3)  and [published](https://github.com/ghsioux/immutable-action-demo/actions/runs/12176234738) the corresponding [immutable action `1.0.3`](https://github.com/ghsioux/immutable-action-demo/pkgs/container/immutable-action-demo/317366598?tag=1.0.3). I then updated the code of the action ([commit be580c03](https://github.com/ghsioux/immutable-action-demo/commit/be580c03ebd9ba926f6bdfe516b6635ea9f240c3)) and made the remote tag `v1.0.3` to point to this new commit. I removed the original `v1.0.3` release, created it again, and guess what? Trying to create a new immutable action with that same tag [failed](https://github.com/ghsioux/immutable-action-demo/actions/runs/12176310609/job/33961788301) with the error:
 
-![Action publish error](/assets/images/2024-11-29-securing-workflow-immutable-actions/publish-error.png "Action publish error")
+![Action publish error](/assets/images/2024-12-10-securing-workflow-immutable-actions/publish-error.png "Action publish error")
 
 ## 5 - Conclusion
 
@@ -189,7 +189,7 @@ In this journey, we’ve explored how Immutable Actions and artifact attestation
 
 But this is just the beginning. Immutable Actions lay the groundwork for a more robust future in DevSecOps. By adopting these practices, you not only protect your workflows but also contribute to a more secure ecosystem for everyone.
 
-In the dojo, we learn the value of collaboration. A big shoutout to the amazing team that helped unravel the inner workings of Immutable Actions: [@tinaheidinger](https://github.com/tinaheidinger), [@thyeggman](https://github.com/thyeggman), [@konradpabjan](https://github.com/konradpabjan), [@conorsloan](https://github.com/conorsloan) and [@jcambass](https://github.com/jcambass).
+In the dojo, we learn the value of collaboration. A big shoutout to the amazing team that helped unravel the inner workings of Immutable Actions: [@tinaheidinger](https://github.com/tinaheidinger), [@thyeggman](https://github.com/thyeggman), [@konradpabjan](https://github.com/konradpabjan), [@conorsloan](https://github.com/conorsloan), [@jcambass](https://github.com/jcambass) and [@steve-glass](https://github.com/steve-glass).
 
 Stay vigilant, and keep your workflows secure, shinobi! 🥷
 
