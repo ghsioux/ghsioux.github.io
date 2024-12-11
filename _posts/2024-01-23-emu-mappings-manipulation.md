@@ -67,6 +67,6 @@ We’ve seen how to tackle GitHub’s username length limitations by customizing
 
 What if you're not using Entra ID? No worries—GitHub supports various identity providers, including **[Okta](https://docs.github.com/en/enterprise-cloud@latest/admin/managing-iam/provisioning-user-accounts-with-scim/configuring-scim-provisioning-with-okta)** and **[PingFederate](https://docs.github.com/en/enterprise-cloud@latest/admin/managing-iam/provisioning-user-accounts-with-scim/configuring-authentication-and-provisioning-with-pingfederate)**, which offer similar customization options for SCIM attribute mappings. Additionally, for other IdPs, you can leverage GitHub’s **[Open SCIM Configuration](https://docs.github.com/en/enterprise-cloud@latest/admin/managing-iam/provisioning-user-accounts-with-scim/configuring-scim-provisioning-for-users#configuring-provisioning-for-other-identity-management-systems)** and its **[SCIM API](https://docs.github.com/en/enterprise-cloud@latest/rest/enterprise-admin/scim?apiVersion=2022-11-28)** to build fully tailored integrations. These tools provide the flexibility to manage provisioning while adhering to GitHub’s constraints, no matter your setup.
 
-That’s it for today, ninjas—time to resume practice in the Cloud Dojo. 
+That’s it for today, ninjas — time to resume practice in the Cloud Dojo. 
 
 Gasshō 🙏
