@@ -8,7 +8,7 @@ minute: 15
 ---
 
 
-> ⚠️ **Update:** Protection rules have now been replaced with more powerful [rulesets](https://docs.github.com/en/enterprise-cloud@latest/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/about-rulesets) that offer enhanced control and flexibility over the repository's workflows and branch protections.
+> ⚠️ **Update:** Protection rules have now been replaced with more powerful [rulesets](/2025/01/07/7-cool-things-with-rulesets) that offer enhanced control and flexibility over the repository's workflows and branch protections.
 
 
 Hey shinobis, welcome back to the dojo! Do you remember the previous blog post about [deploying GitHub Enterprise Server on Azure the GitOps way](https://ghsioux.github.io/2023/01/10/ghes-azure-gitops)? In this post, let's go a bit further and see some specific steps that secured the pull-request (PR) process and the resulting infrastructure deployment.
