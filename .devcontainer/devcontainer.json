@@ -21,5 +21,5 @@
       }
   },
   "postCreateCommand": "bundle install",
-  "postAttachCommand": "bundler exec jekyll serve --watch --port=4000 --host=0.0.0.0 --livereload --verbose"
+  "postAttachCommand": "bundler exec jekyll serve --future --watch --port=4000 --host=0.0.0.0 --livereload --verbose"
 }
