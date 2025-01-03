@@ -309,7 +309,7 @@ A bypass list has been added to this ruleset, enabling repository owners to bypa
 
 Maintaining consistent code quality across an organization requires enforcement of linting and formatting standards. This **organization-level** ruleset leverages [repository custom properties](https://docs.github.com/en/enterprise-cloud@latest/organizations/managing-organization-settings/managing-custom-properties-for-repositories-in-your-organization) and [required workflows](https://docs.github.com/en/enterprise-cloud@latest/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/available-rules-for-rulesets#require-workflows-to-pass-before-merging) to ensure that branches in critical JavaScript/TypeScript repositories adhere to an organization-provided linting workflow before changes can be merged into the default branch.
 
-Unlike repository-specific rulesets, this organization-wide approach scales effortlessly, applying uniform rules across all repositories meeting the defined criteria.
+Unlike repository-specific rulesets, this organization-wide approach scales effortlessly, applying uniform rules across all repositories meeting the defined criteria. Also, note that organization admins can **bypass** this ruleset if needed.
 
 <details class="details-container">
   <summary class="details-summary">📜 Ruleset JSON</summary>
