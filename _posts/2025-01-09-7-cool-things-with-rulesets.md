@@ -401,14 +401,14 @@ Here are a few examples (click to expand):
     
     This policy ensures that only organization admins can delete repositories labeled with the custom property <code>"criticality": "high"</code>. This safeguard prevents both accidental and malicious deletions. It is enforced across all organizations within the enterprise, helping to protect repositories that are essential for your organization's operations and security.
 
-    <img src="/assets/images/2025-01-07-7-cool-things-with-rulesets/prevent-critical-repos-deletion.png" alt="prevent critical repos deletion in enterprise"/>
+    <img src="/assets/images/2025-01-09-7-cool-things-with-rulesets/prevent-critical-repos-deletion.png" alt="prevent critical repos deletion in enterprise"/>
 </details>
 
 <details class="details-container">
     <summary class="details-summary">📸 Restrict Public Repository Creation </summary>    
 
     This policy restricts the creation of public repositories within your enterprise. It ensures that repositories can only be created as private or internal to promote innersourcing. This is an important safeguard to protect sensitive data and intellectual property from being exposed to the public. Note that this is the default behavior with <a href="https://docs.github.com/en/enterprise-cloud@latest/admin/managing-iam/understanding-iam-for-enterprises/about-enterprise-managed-users">Enterprise Managed Users</a>.
-    <img src="/assets/images/2025-01-07-7-cool-things-with-rulesets/prevent-public-repo.png" alt="prevent public repos in enterprise"/>
+    <img src="/assets/images/2025-01-09-7-cool-things-with-rulesets/prevent-public-repo.png" alt="prevent public repos in enterprise"/>
 </details>
 
 <details class="details-container">
@@ -416,7 +416,7 @@ Here are a few examples (click to expand):
     
     This policy targets organizations with names starting with <code>iac-*</code> and enforces a naming convention for their repositories. The repository names must begin with the environment (e.g., <code>`prod-*`</code>, <code>`test-*`</code>, <code>`staging-*`</code>).
 
-    <img src="/assets/images/2025-01-07-7-cool-things-with-rulesets/enforce-iac-repos-naming-convention.png" alt="enforce iac repos naming convention"/>
+    <img src="/assets/images/2025-01-09-7-cool-things-with-rulesets/enforce-iac-repos-naming-convention.png" alt="enforce iac repos naming convention"/>
 </details>
 
 
