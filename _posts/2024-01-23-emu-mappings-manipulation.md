@@ -1,6 +1,6 @@
 ---
 layout: post  
-title: Customizing EMU Provisioning Mappings in Azure
+title: Customizing GitHub EMU Provisioning Mappings in Azure
 description: A quick dive into customizing user provisioning mappings in GitHub Enterprise Managed Users (EMU), with a focus on username length limitations.  
 comments: false  
 tags: enterprise-managed-user emu scim provisioning azure entra-id

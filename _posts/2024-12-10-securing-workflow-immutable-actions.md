@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Securing Actions workflows with Immutable Actions
+title: Securing GitHub Actions workflows with Immutable Actions
 description: A deep dive into the power of immutable actions, wildcard versioning, and build provenance using artifact attestations in GitHub Actions.
 comments: false
 tags: actions immutable-actions artifact-attestations security supply-chain-security

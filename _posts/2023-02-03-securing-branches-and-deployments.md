@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Securing code and its deployment with rules
+title: Securing code and its deployment with GitHub branch protection rules
 description: A story about environment and branch protection 
 comments: false
 tags: actions pull-request administration security

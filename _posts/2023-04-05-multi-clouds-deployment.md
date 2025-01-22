@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Multi-clouds deployment with OIDC and rollback support
+title: Using GitHub Actions for multi-clouds deployment with OIDC and rollback support
 description: A story about (not-only) versioned & passwordless multi-clouds deployment 
 comments: false
 tags: actions oidc container-app azure aws gcp release reusable-workflows rollback
