@@ -18,7 +18,7 @@ Before we dive into this enigma, let’s set the stage: What are Immutable Actio
 > ⚠️ **Note:** At the time of writing, Immutable Actions are in [limited public preview](https://github.com/features/preview/immutable-actions) and subject to change.
 
 
-## 1. The Genesis: Artifact Attestations
+## 1 - The Genesis: Artifact Attestations
 
 [Artifact attestations in GitHub](https://docs.github.com/en/enterprise-cloud@latest/actions/security-for-github-actions/using-artifact-attestations/using-artifact-attestations-to-establish-provenance-for-builds) [[1](https://github.blog/security/supply-chain-security/introducing-npm-package-provenance/)] [[2](https://github.blog/security/supply-chain-security/configure-github-artifact-attestations-for-secure-cloud-native-delivery/)] enhance [supply chain security](https://docs.github.com/en/enterprise-cloud@latest/code-security/supply-chain-security/understanding-your-software-supply-chain/about-supply-chain-security) by cryptographically linking [artifacts](https://docs.github.com/en/enterprise-cloud@latest/actions/writing-workflows/choosing-what-your-workflow-does/storing-and-sharing-data-from-a-workflow#about-workflow-artifacts) such as binaries to their source code and build process. They ensure both integrity and provenance, reducing the risk of tampered or malicious software:
 
@@ -36,7 +36,7 @@ For developers and teams, this means greater confidence in the security of depen
 As a last note, remember that attestations are only effective if [verified](https://docs.github.com/en/enterprise-cloud@latest/actions/security-for-github-actions/using-artifact-attestations/using-artifact-attestations-to-establish-provenance-for-builds#verifying-artifact-attestations-with-the-github-cli), making it crucial to validate signed artifacts, particularly for binaries, packages, and manifests. 
 
 
-## 2. The Next Step: Immutable Actions
+## 2 - The Next Step: Immutable Actions
 
 Now that we know what are artifact attestations, let's take these concepts a step further and apply them to **GitHub Actions**. Just like build artifacts, it’s essential to ensure that the actions used in workflows are trustworthy and secure. The good news is that we can achieve this through **Immutable Actions**.
 
@@ -59,7 +59,7 @@ Let’s explore how Immutable Actions compare to the mutable ones and how they m
 | **(Im)mutability** | Vulnerable to tag mutations, allowing potentially malicious code changes. | Secure resolution with immutable tags and verified publishing flow, preventing tampering. |
 | **Versioning**        | Wildcard versions (e.g. `v1`) manually maintained, leading to inconsistencies. | Reliable resolution of wildcard versions to the latest matching package (e.g. `v1 -> 1.3.2`), eliminating versioning issues (✦✦ see next section). |
 
-## 3. A note on versioning and resolution
+## 3 - A note on versioning and resolution
 
 Before Immutable Actions, actions in workflows were referenced using mutable tags or branches, e.g.: 
 ```
