@@ -12,7 +12,7 @@ toc_h_max: 2
 
 Greetings, code ninjas! 🥷
 
-After helping a customer unlock the power of Copilot Coding Agent this morning, I realized this knowledge should be shared with the entire dojo. Consider this your essential scroll of wisdom for getting started with your new AI coding companion.
+After helping a customer unlock the power of [Copilot Coding Agent](https://docs.github.com/en/enterprise-cloud@latest/copilot/concepts/about-copilot-coding-agent#overview-of-copilot-coding-agent) this morning, I realized this knowledge should be shared with the entire dojo. Consider this your essential scroll of wisdom for getting started with your new AI coding companion.
 
 ## 1 - The Two Paths of the Coding Agent
 
