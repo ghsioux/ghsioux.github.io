@@ -3,14 +3,14 @@ layout: post
 title: Using Cost Centers and Budgets to Control GitHub Copilot Spending
 description: A guide to controlling Copilot spending in your enterprise using budgets and cost centers
 comments: false
-tags: copilot enterprise cost-management budgets administration
+tags: copilot cost-management budgets administration enterprise
 minute: 20
 toc: true
 toc_h_min: 2
 toc_h_max: 2
 ---
 
-Welcome back to the dojo, fellow ninjas! 🥷 How is your summer going? May your stealth stay cool and your shuriken fly true, even in the summer heat!
+Welcome back to the dojo, fellow ninjas! 🥷 
 
 Recently, several customers asked me: **"How can we authorize specific groups of users to consume premium requests while controlling the associated costs?"** The answer lies in mastering cost centers and budgets for granular spending control.
 
@@ -18,7 +18,7 @@ In this guide, we'll explore how to set up cost centers, apply budgets, and ensu
 
 > ⚠️ **Note:** Premium request billing and cost centers are available for GitHub Enterprise Cloud customers with Copilot Business or Enterprise licences.
 
-## 1 - The Context: Copilot Premium Requests
+## 1 - Understanding Copilot Premium Requests
 
 [GitHub Copilot](https://github.com/features/copilot) offers two tiers of AI models: standard (unlimited) and premium (metered). Here's what you need to know:
 
@@ -41,7 +41,7 @@ The critical detail: **GitHub sets a $0 default budget for premium requests beyo
 The challenge becomes clear: How do you enable premium models for users that need them while preventing runaway costs? Enter **cost centers** and **budgets**—GitHub's answer to enterprise spending control.
 
 
-## 2 - Understanding Cost Centers: The Foundation
+## 2 - Setting Up Cost Centers
 
 Cost centers in GitHub are logical containers that group resources (i.e. users, organizations, or repositories) for spending tracking and allocation. Think of them as financial dojos where specific teams train with allocated budgets. For Copilot, they serve two critical functions:
 
@@ -77,6 +77,8 @@ With this understanding of resource allocation, let's examine how GitHub determi
 
 
 > 💡 **Pro tip:** In Copilot-only enterprise accounts (without GitHub Enterprise), there are no organizations—only direct user assignments work. Plan your cost center strategy accordingly.
+
+> 🔍 **Bonus:** I've created a [gist](https://gist.github.com/ghsioux/your-gist-id) that helps you determine which cost center a user belongs to and identify potential assignment conflicts across your enterprise.
 
 ### Creating Cost Centers
 
@@ -198,54 +200,38 @@ Here's how the budget gets consumed throughout the month:
 | 29 | Bob | Claude Opus 4 | 10× | 5 | 5 × 10 × $0.04 = $2.00 | **$100.50** ❌ |
 
 In this scenario:
-- The team shares the $100 budget collectively
-- Different models consume the budget at different rates based on their multipliers
-- Bob's final request on day 29 would exceed the budget and be **rejected**
-- All subsequent premium requests by any team member would be blocked until the budget resets on the 1st of the next month
+- The team shares the $100 budget collectively (since budgets are assigned to cost centers, not individuals);
+- Different models consume the budget at different rates based on their multipliers;
+- Bob's final request on day 29 would exceed the budget and be **rejected**;
+- All subsequent premium requests by any team member would be blocked until the budget resets on the 1st of the next month.
 
-**Key Insights:**
-- The budget is **shared across all users** in the cost center—it's not $100 per user, but $100 total for the entire team
-- Budget exhaustion affects **everyone in the cost center**, potentially blocking critical work
-- Consider implementing team guidelines for high-multiplier model usage to maximize budget efficiency
-- Alternatively, a Copilot admin can decide which models to enable or disable in the Copilot policies.
 
 ## 4 - Monitoring and Tracking Usage
 
 Once your budgets are in place, effective monitoring becomes crucial for maintaining cost control and understanding usage patterns. GitHub provides comprehensive monitoring tools that transform raw data into actionable insights:
 
-- **[Premium Requests Usage reports](https://docs.github.com/en/enterprise-cloud@latest/copilot/tutorials/rolling-out-github-copilot-at-scale/assigning-licenses/managing-your-companys-spending-on-github-copilot#tracking-premium-requests)** deliver per-user consumption metrics to identify power users and optimization opportunities
-- **[Budget alerts](https://docs.github.com/en/enterprise-cloud@latest/copilot/tutorials/rolling-out-github-copilot-at-scale/assigning-licenses/managing-your-companys-spending-on-github-copilot#receive-alerts-for-overspending)** trigger proactive notifications at 75%, 90%, and 100% thresholds, preventing surprise budget exhaustion
-- **[Spending visualizations](https://docs.github.com/en/enterprise-cloud@latest/copilot/tutorials/rolling-out-github-copilot-at-scale/assigning-licenses/managing-your-companys-spending-on-github-copilot#visualize-spending-trends)** reveal patterns across cost centers, enabling data-driven budget allocation decisions
+- **[Premium Requests Usage reports](https://docs.github.com/en/enterprise-cloud@latest/copilot/tutorials/rolling-out-github-copilot-at-scale/assigning-licenses/managing-your-companys-spending-on-github-copilot#tracking-premium-requests)** deliver per-user consumption metrics to identify power users and optimization opportunities;
+- **[Budget alerts](https://docs.github.com/en/enterprise-cloud@latest/copilot/tutorials/rolling-out-github-copilot-at-scale/assigning-licenses/managing-your-companys-spending-on-github-copilot#receive-alerts-for-overspending)** trigger proactive notifications at 75%, 90%, and 100% thresholds, preventing surprise budget exhaustion;
+- **[Spending visualizations](https://docs.github.com/en/enterprise-cloud@latest/copilot/tutorials/rolling-out-github-copilot-at-scale/assigning-licenses/managing-your-companys-spending-on-github-copilot#visualize-spending-trends)** reveal patterns across cost centers, enabling data-driven budget allocation decisions;
+- for your developers, **[In-IDE usage monitoring](https://docs.github.com/en/enterprise-cloud@latest/copilot/how-tos/monitoring-your-copilot-usage-and-entitlements#viewing-usage-in-your-ide)** provides real-time visibility into your premium request consumption directly within VS Code, Visual Studio, JetBrains IDEs, Xcode, and Eclipse.
 
-Some battle-tested practices from the field:
 
-**Weekly Pulse Checks:**
-- Identify users exceeding 50% of their monthly premium allowance early
-- Spot unusual model usage patterns that could indicate inefficient workflows
-- Proactively communicate with teams approaching budget thresholds
+Beyond the tooling, successful budget management requires a strategic approach. GitHub's official documentation [recommends](https://docs.github.com/en/enterprise-cloud@latest/copilot/tutorials/rolling-out-github-copilot-at-scale/assigning-licenses/managing-your-companys-spending-on-github-copilot#tracking-premium-requests) to identify power users, understand their use cases, and evaluate whether upgrading to Copilot Enterprise might be more cost-effective. Based on field experience implementing these strategies, here are some complementary practices:
 
-**Monthly Deep Dives:**
-- Calculate actual cost-per-feature-delivered metrics to quantify ROI
-- Compare planned vs. actual spending to refine future budget forecasts
-- Identify opportunities to shift workloads from premium to standard models
+* 💡 **Start Conservative, Then Scale:** Launch with 50% of your estimated budget. Real usage data beats projections every time, and it's far easier to increase budgets based on demonstrated need than to claw back overspending.
 
-**Quarterly Strategic Alignments:**
-- Benchmark spending efficiency across similar teams or projects
-- Evaluate if current model access aligns with team productivity gains
-- Consider consolidating low-usage cost centers or splitting high-demand ones
+* 🎯 **Developer Education Matters:** Create a simple decision tree with your teams regarding which model to use for which use-case. Share the [model selection guide](https://docs.github.com/en/enterprise-cloud@latest/copilot/reference/ai-models/choosing-the-right-ai-model-for-your-task) to help developers choose the right model and implement team guidelines for high-multiplier model usage to maximize budget efficiency.
 
-> 💡 **Start Conservative, Then Scale:** Launch with 50% of your estimated budget. Real usage data beats projections every time—it's far easier to increase budgets based on demonstrated need than to claw back overspending.
+* 🔧 **Administrative Controls:** Copilot admins can proactively manage costs by enabling or disabling specific models through Copilot policies, providing an additional layer of budget protection beyond user education.
 
-> 🎯 **Developer Education Matters:** Create a simple decision tree for your teams: "Use standard models for routine tasks, premium for complex problem-solving." Share model performance benchmarks to help developers make informed choices.
 
-## 5 - Best Practices and the Path Forward
 
-Implementing Copilot budget controls isn't about restriction—it's about sustainable innovation. Like a well-oiled kata, these practices ensure smooth, predictable operations.
+## 5 - The Bigger Picture ☁️
 
-Your mission: Enable maximum developer productivity within predictable cost boundaries. With proper controls, teams get the AI power they need while finance maintains budget confidence.
+Implementing Copilot budget controls enables teams to harness AI capabilities responsibly while ensuring sustainable innovation. In this guide, we've journeyed through creating cost centers, assigning users, implementing SKU-level budgets, and establishing monitoring practices—giving you the tools to enable AI-powered development while maintaining financial predictability.
 
-Remember: These cost center and budget concepts extend beyond Copilot to all GitHub metered products—Actions minutes, Packages storage, Codespaces compute. Master them here, apply them everywhere.
+Remember: These cost center and budget concepts extend far beyond Copilot to all GitHub Enterprise metered products—Actions minutes, Packages storage, Codespaces compute, and more. Master them here, apply them everywhere across your GitHub Enterprise ecosystem.
 
-Until next time, keep your code clean and your budgets balanced! 🎯
+Until next time, keep your code clean and your budgets balanced like a zen master! 
 
 Gasshō 🙏
