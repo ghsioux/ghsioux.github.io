@@ -174,13 +174,22 @@ jobs:
             echo "name=ghcr.io/${{ github.repository }}:${{ github.sha }}" >> $GITHUB_OUTPUT
           fi
 
+      - name: Log in to GitHub Container Registry
+        if: github.event_name != 'pull_request'
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Build Docker image
+        id: build
         uses: docker/build-push-action@v5
         with:
           context: ${{ inputs.context }}
           file: ${{ inputs.dockerfile }}
-          push: false
-          load: true
+          push: ${{ github.event_name != 'pull_request' }}
+          load: ${{ github.event_name == 'pull_request' }}
           tags: ${{ steps.image-name.outputs.name }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
@@ -206,19 +215,6 @@ jobs:
           format: 'table'
           exit-code: '1'
           severity: 'CRITICAL,HIGH'
-
-      - name: Log in to GitHub Container Registry
-        if: github.event_name != 'pull_request'
-        uses: docker/login-action@v3
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Push image
-        if: github.event_name != 'pull_request'
-        run: |
-          docker push ${{ steps.image-name.outputs.name }}
 
       - name: Attest image
         if: github.event_name != 'pull_request'
